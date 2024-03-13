@@ -161,6 +161,12 @@
         .info-text:last-child{
           margin-top: 16px;
         }
+
+        .info-image{
+          background-image: url("../../../assets/images/page/delivery-circle.png");
+          height: 70px;
+          width: 70px;
+        }
       }
 
       &.info-payment{
@@ -170,6 +176,12 @@
           &:last-child{
             margin-bottom: 0;
           }
+        }
+
+        .info-image{
+          background-image: url("../../../assets/images/page/payment-circle.png");
+          height: 70px;
+          width: 70px;
         }
       }
     }
