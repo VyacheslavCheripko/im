@@ -7,6 +7,13 @@ header.header{
     display: flex;
     justify-content: space-between;
 
+    .logo{
+      background-image: url("../../../../assets/images/logo.png");
+      background-position: center;
+      width: 137px;
+      height: 148px;
+    }
+
     .header-top{
       padding-top: 32px;
       padding-bottom: 25px;
