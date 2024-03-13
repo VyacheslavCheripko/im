@@ -60,6 +60,12 @@
       &.offer-insta{
         .offer-image{
           margin-top: 35px;
+
+          &.offer-image-1{
+            background-image: url("../../../assets/images/page/offer1.png");
+            width: 134px;
+            height: 155px;
+          }
         }
 
         .offer-text{
@@ -86,6 +92,12 @@
         .offer-image{
           margin-top: 12px;
           margin-left: 81px;
+
+          &.offer-image-2{
+            background-image: url("../../../assets/images/page/offer2.png");
+            width: 227px;
+            height: 127px;
+          }
         }
 
         .offer-button{
