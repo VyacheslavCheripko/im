@@ -10,6 +10,10 @@ footer.footer {
 
     a.logo {
       margin-right: 63px;
+      background-image: url("../../../../assets/images/logo-green.png");
+      background-position: center;
+      width: 137px;
+      height: 148px;
     }
 
     .footer-block {
@@ -80,6 +84,25 @@ footer.footer {
           .payment-item {
             height: 35px;
             background-position: top;
+
+            &.payment-item-1{
+              background-image: url("../../../../assets/images/payment/1.png");
+            }
+            &.payment-item-2{
+              background-image: url("../../../../assets/images/payment/2.png");
+            }
+            &.payment-item-3{
+              background-image: url("../../../../assets/images/payment/3.png");
+            }
+            &.payment-item-4{
+              background-image: url("../../../../assets/images/payment/4.png");
+            }
+            &.payment-item-5{
+              background-image: url("../../../../assets/images/payment/5.png");
+            }
+            &.payment-item-6{
+              background-image: url("../../../../assets/images/payment/6.png");
+            }
           }
         }
       }
