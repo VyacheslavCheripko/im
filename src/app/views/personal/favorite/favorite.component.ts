@@ -48,10 +48,10 @@ export class FavoriteComponent implements  OnInit{
                 }
 
                 return product;
-              })
+              });
             }
-          })
-      })
+          });
+      });
   }
   removeFromFavorites(id: string): void{
     this.favoriteService.removeFavorite(id)
@@ -61,16 +61,16 @@ export class FavoriteComponent implements  OnInit{
         }
 
         this.products = this.products.filter(item => item.id !== id);
-      })
+      });
   }
 
   addToCart(productId: string){
     this.cartService.updateCart(productId, 1)
       .subscribe((data: CartType | DefaultResponseType) => {
         if ((data as DefaultResponseType).error !== undefined){
-          throw new Error((data as DefaultResponseType).message)
+          throw new Error((data as DefaultResponseType).message);
         }
-      })
+      });
   }
 
   updateCount(id: string, count: number){
@@ -78,7 +78,7 @@ export class FavoriteComponent implements  OnInit{
       this.cartService.updateCart(id, count)
         .subscribe((data: CartType | DefaultResponseType) => {
           if ((data as DefaultResponseType).error !== undefined){
-            throw new Error((data as DefaultResponseType).message)
+            throw new Error((data as DefaultResponseType).message);
           }
           this.products.map(item => {
             if (item.id === id){
@@ -88,7 +88,7 @@ export class FavoriteComponent implements  OnInit{
             }
             return item;
           });
-        })
+        });
     }
   }
 }

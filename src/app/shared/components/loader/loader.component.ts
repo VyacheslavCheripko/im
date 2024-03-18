@@ -8,14 +8,14 @@ import {LoaderService} from "../../services/loader.service";
 })
 export class LoaderComponent implements OnInit{
 
-  isShowed: boolean = false;
+  isShowed = false;
   constructor(private loaderService: LoaderService) {
   }
 
   ngOnInit() {
     this.loaderService.isShowed$.subscribe((isShowed: boolean) => {
       this.isShowed = isShowed;
-    })
+    });
   }
 
 }

@@ -20,10 +20,10 @@ import {debounceTime} from "rxjs";
 export class HeaderComponent implements OnInit{
   @Input() categories: CategoryWithTypeType[] = [];
   products: ProductType[] = [];
-  isLogged: boolean = false;
-  count: number = 0;
+  isLogged = false;
+  count = 0;
   serverStaticPath: string = environment.serverStaticPath;
-  showedSearch: boolean = false;
+  showedSearch = false;
   searchField = new FormControl();
   constructor(private authService: AuthService,
               private _snackBar: MatSnackBar,
@@ -43,28 +43,28 @@ export class HeaderComponent implements OnInit{
             .subscribe((data: ProductType[]) => {
               this.products = data;
               this.showedSearch = true;
-            })
+            });
         } else {
           this.products = [];
         }
-      })
+      });
 
     this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
       this.isLogged = isLoggedIn;
-    })
+    });
 
     this.cartService.getCartCount()
       .subscribe((data: { count: number } | DefaultResponseType) => {
         if ((data as DefaultResponseType).error !== undefined){
-          throw new Error((data as DefaultResponseType).message)
+          throw new Error((data as DefaultResponseType).message);
         }
         this.count = (data as { count: number }).count;
-      })
+      });
 
     this.cartService.count$
       .subscribe(count => {
         this.count = count;
-      })
+      });
   }
   logout(){
     this.authService.logout()
@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit{
         error: () => {
           this.doLogOut();
         }
-      })
+      });
   }
 
   doLogOut(){

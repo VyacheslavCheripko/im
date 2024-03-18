@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (tokens && tokens.accessToken) {
       const authReq = req.clone({
         headers: req.headers.set('x-access-token', tokens.accessToken)
-      })
+      });
 
       return next.handle(authReq)
         .pipe(
@@ -29,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
             return throwError(() => error);
           }),
           finalize(() => this.loaderService.hide())
-        )
+        );
     }
 
     return next.handle(req).pipe(
@@ -57,7 +57,7 @@ export class AuthInterceptor implements HttpInterceptor {
           this.authService.setTokens(refreshResult.accessToken, refreshResult.refreshToken);
           const authReq = req.clone({
             headers: req.headers.set('x-access-token', refreshResult.accessToken)
-          })
+          });
           return next.handle(authReq);
         }),
         catchError(error => {
@@ -65,6 +65,6 @@ export class AuthInterceptor implements HttpInterceptor {
           this.router.navigate(['/']);
           return throwError(() => error);
         })
-      )
+      );
   }
 }

@@ -19,6 +19,6 @@ export class LayoutComponent implements OnInit {
             return Object.assign({typesUrl: item.types.map(item => item.url)}, item);
           });
         }
-      )
+      );
   }
 }

@@ -9,11 +9,11 @@ import {environment} from "../../../environments/environment";
   providedIn: 'root'
 })
 export class AuthService {
-  public accessTokenKey: string = 'accessToken';
-  public refreshTokenKey: string = 'refreshToken';
-  public userIdKey: string = 'userId';
+  public accessTokenKey = 'accessToken';
+  public refreshTokenKey = 'refreshToken';
+  public userIdKey = 'userId';
   public isLogged$: Subject<boolean> = new Subject<boolean>();
-  public isLogged: boolean = false;
+  public isLogged = false;
 
   constructor(private http: HttpClient) {
     this.isLogged = !!localStorage.getItem(this.accessTokenKey);
@@ -38,7 +38,7 @@ export class AuthService {
   refresh(): Observable<DefaultResponseType | LoginResponseType>{
     const tokens = this.getTokens();
     if(tokens && tokens.refreshToken){
-      return this.http.post<DefaultResponseType | LoginResponseType>(environment.api + 'refresh', {refreshToken: tokens.refreshToken})
+      return this.http.post<DefaultResponseType | LoginResponseType>(environment.api + 'refresh', {refreshToken: tokens.refreshToken});
     }
     throw throwError(() => 'Can not use token');
   }

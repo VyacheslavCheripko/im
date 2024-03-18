@@ -27,8 +27,8 @@ export class OrdersComponent implements OnInit{
           item.color = status.color;
 
           return item;
-        })
-      })
+        });
+      });
   }
 
   protected readonly length = length;

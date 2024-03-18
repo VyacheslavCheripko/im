@@ -7,7 +7,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class CountSelectorComponent {
 
-  @Input() count: number = 1;
+  @Input() count = 1;
 
   @Output() onCountChange: EventEmitter<number> = new EventEmitter<number>();
 

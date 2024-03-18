@@ -18,12 +18,12 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit{
-  product!: ProductType
+  product!: ProductType;
   recommendedProducts: ProductType[] = [];
   serverStaticPath = environment.serverStaticPath;
-  count: number = 1;
+  count = 1;
   cart: CartType | null = null;
-  isLoggedIn: boolean = false;
+  isLoggedIn = false;
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
               private cartService: CartService,
@@ -46,14 +46,14 @@ export class DetailComponent implements OnInit{
 
               const cartDataResponse = cartData as CartType;
               if(cartDataResponse){
-                const productInCart = cartDataResponse.items.find(item => item.product.id === this.product.id)
+                const productInCart = cartDataResponse.items.find(item => item.product.id === this.product.id);
                 if (productInCart){
                   this.product.countInCart = productInCart.quantity;
                   this.count = this.product.countInCart;
                 }
               }
 
-            })
+            });
           if(this.authService.getLoggedIn()) {
             this.isLoggedIn = true;
             this.favoriteService.getFavorites()
@@ -67,15 +67,15 @@ export class DetailComponent implements OnInit{
                 if (currentProductExists) {
                   this.product.isInFavorite = true;
                 }
-              })
+              });
           }
-        })
-    })
+        });
+    });
 
     this.productService.getBestProducts()
       .subscribe((data: ProductType[]) => {
         this.recommendedProducts = data;
-      })
+      });
   }
   customOptions: OwlOptions = {
     loop: true,
@@ -101,7 +101,7 @@ export class DetailComponent implements OnInit{
       }
     },
     nav: false
-  }
+  };
 
   updateCount(value: number){
     this.count = value;
@@ -109,10 +109,10 @@ export class DetailComponent implements OnInit{
       this.cartService.updateCart(this.product.id, this.count)
         .subscribe((data: CartType | DefaultResponseType) => {
           if ((data as DefaultResponseType).error !== undefined){
-            throw new Error((data as DefaultResponseType).message)
+            throw new Error((data as DefaultResponseType).message);
           }
           this.product.countInCart = this.count;
-        })
+        });
     }
   }
 
@@ -120,21 +120,21 @@ export class DetailComponent implements OnInit{
     this.cartService.updateCart(this.product.id, this.count)
       .subscribe((data: CartType | DefaultResponseType) => {
         if ((data as DefaultResponseType).error !== undefined){
-          throw new Error((data as DefaultResponseType).message)
+          throw new Error((data as DefaultResponseType).message);
         }
         this.product.countInCart = this.count;
-      })
+      });
   }
 
   removeFromCart(){
     this.cartService.updateCart(this.product.id, 0)
       .subscribe((data: CartType | DefaultResponseType) => {
         if ((data as DefaultResponseType).error !== undefined){
-          throw new Error((data as DefaultResponseType).message)
+          throw new Error((data as DefaultResponseType).message);
         }
         this.product.countInCart = 0;
         this.count = 1;
-      })
+      });
   }
 
   updateFavorite(){
@@ -150,15 +150,15 @@ export class DetailComponent implements OnInit{
           }
 
           this.product.isInFavorite = false;
-        })
+        });
     } else {
       this.favoriteService.addFavorite(this.product.id)
         .subscribe((data: FavoriteType | DefaultResponseType) => {
           if ((data as DefaultResponseType).error !== undefined){
-            throw new Error((data as DefaultResponseType).message)
+            throw new Error((data as DefaultResponseType).message);
           }
           this.product.isInFavorite = true;
-        })
+        });
     }
   }
 }

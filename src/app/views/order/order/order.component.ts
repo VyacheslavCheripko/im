@@ -22,8 +22,8 @@ import {AuthService} from "../../../core/auth/auth.service";
 })
 export class OrderComponent implements OnInit {
   cart: CartType | null = null;
-  totalAmount: number = 0;
-  totalCount: number = 0;
+  totalAmount = 0;
+  totalCount = 0;
   deliveryType: DeliveryType = DeliveryType.delivery;
   deliveryTypes = DeliveryType;
   paymentTypes = PaymentType;
@@ -39,7 +39,7 @@ export class OrderComponent implements OnInit {
     entrance: [''],
     apartment: [''],
     comment: ['']
-  })
+  });
   @ViewChild('popup') popup!: TemplateRef<ElementRef>;
   dialogRef: MatDialogRef<any> | null = null;
 
@@ -58,7 +58,7 @@ export class OrderComponent implements OnInit {
     this.cartService.getCart()
       .subscribe((data: CartType | DefaultResponseType) => {
         if ((data as DefaultResponseType).error !== undefined) {
-          throw new Error((data as DefaultResponseType).message)
+          throw new Error((data as DefaultResponseType).message);
         }
         this.cart = data as CartType;
         if (!this.cart || (this.cart && this.cart.items.length === 0)) {
@@ -67,7 +67,7 @@ export class OrderComponent implements OnInit {
           return;
         }
         this.calculateTotal();
-      })
+      });
 
     if(this.authServcice.getLoggedIn()){
       this.userService.getUserInfo()
@@ -90,12 +90,12 @@ export class OrderComponent implements OnInit {
             entrance: userInfo.entrance ? userInfo.entrance : '',
             apartment: userInfo.apartment ? userInfo.apartment : '',
             comment: ''
-          }
+          };
           this.orderForm.setValue(paramsToUpdate);
           if (userInfo.deliveryType){
             this.deliveryType = userInfo.deliveryType;
           }
-        })
+        });
     }
   }
 
@@ -106,7 +106,7 @@ export class OrderComponent implements OnInit {
       this.cart.items.forEach(item => {
         this.totalCount += item.quantity;
         this.totalAmount += item.quantity * parseInt(item.product.price);
-      })
+      });
     }
   }
 
@@ -147,7 +147,7 @@ export class OrderComponent implements OnInit {
         phone: this.orderForm.value.phone,
         paymentType: this.orderForm.value.paymentType,
         email: this.orderForm.value.email
-      }
+      };
 
       if(this.deliveryType === this.deliveryTypes.delivery){
         if (this.orderForm.value.street){
@@ -178,7 +178,7 @@ export class OrderComponent implements OnInit {
             this.dialogRef.backdropClick()
               .subscribe(() => {
                 this.router.navigate(['/']);
-              })
+              });
             this.cartService.setCount(0);
           },
           error: (errorResponse: HttpErrorResponse) => {
@@ -188,7 +188,7 @@ export class OrderComponent implements OnInit {
               this._snackBar.open('Ошибка заказа');
             }
           }
-        })
+        });
     } else {
       this.orderForm.markAllAsTouched();
       this._snackBar.open('Заполните необходимые поля');

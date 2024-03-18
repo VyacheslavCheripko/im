@@ -9,7 +9,7 @@ import {DefaultResponseType} from "../../../types/default-response.type";
   providedIn: 'root'
 })
 export class CartService {
-  private count: number = 0;
+  private count = 0;
   count$: Subject<number> = new Subject<number>();
 
   setCount(count: number){
@@ -30,20 +30,20 @@ export class CartService {
             this.count$.next(this.count);
           }
         })
-      )
+      );
   }
   updateCart(productId: string, quantity: number): Observable<CartType | DefaultResponseType>{
     return this.http.post<CartType | DefaultResponseType>(environment.api + 'cart', {productId, quantity}, {withCredentials: true})
       .pipe(
         tap(data => {
           if (!data.hasOwnProperty('error')){
-            let count: number = 0;
+            let count = 0;
             (data as CartType).items.forEach(item => {
               count += item.quantity;
-            })
+            });
             this.setCount(count);
           }
         })
-      )
+      );
   }
 }

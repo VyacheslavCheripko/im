@@ -57,12 +57,12 @@ export class CategoryFilterComponent implements OnInit {
           })
         }*/
       }
-    })
+    });
   }
 
   get title(): string {
     if (this.categoryWithTypes) {
-      return this.categoryWithTypes.name
+      return this.categoryWithTypes.name;
     } else if (this.type === 'height') {
       return 'Высота';
     } else if (this.type === 'diameter') {
@@ -91,7 +91,7 @@ export class CategoryFilterComponent implements OnInit {
     this.activeParams.page = 1;
     this.router.navigate(['/catalog'], {
       queryParams: this.activeParams
-    })
+    });
   }
 
   updateFilterParamFromTo(param: string, value: string) {
@@ -105,7 +105,7 @@ export class CategoryFilterComponent implements OnInit {
       this.activeParams.page = 1;
       this.router.navigate(['/catalog'], {
         queryParams: this.activeParams
-      })
+      });
     }
   }
 

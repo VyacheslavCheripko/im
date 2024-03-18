@@ -17,7 +17,7 @@ export class LoginComponent {
     email: ['', [Validators.email, Validators.required]],
     password: ['', [Validators.required]],
     rememberMe: [false]
-  })
+  });
   constructor(private fb: FormBuilder, private authService: AuthService, private _snackBar: MatSnackBar, private router: Router) {
   }
   login(): void{
@@ -53,7 +53,7 @@ export class LoginComponent {
               this._snackBar.open('Ошибка авторизации');
             }
           }
-        })
+        });
 
     }
   }

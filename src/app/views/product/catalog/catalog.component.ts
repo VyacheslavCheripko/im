@@ -32,7 +32,7 @@ export class CatalogComponent implements OnInit{
     {name: 'От Я до А', value: 'az-desc'},
     {name: 'По возрастанию цены', value: 'price-asc'},
     {name: 'По убыванию цены', value: 'price-desc'}
-  ]
+  ];
   pages: number[] = [];
   cart: CartType | null = null;
   favoriteProducts: FavoriteType[] | null = null;
@@ -49,7 +49,7 @@ export class CatalogComponent implements OnInit{
     this.cartService.getCart()
       .subscribe((data: CartType | DefaultResponseType) => {
         if ((data as DefaultResponseType).error !== undefined){
-          throw new Error((data as DefaultResponseType).message)
+          throw new Error((data as DefaultResponseType).message);
         }
         this.cart = data as CartType;
 
@@ -69,11 +69,11 @@ export class CatalogComponent implements OnInit{
               error: (error) => {
                 this.processCatalog();
               }
-            })
+            });
         } else {
           this.processCatalog();
         }
-      })
+      });
   }
 
   processCatalog(){
@@ -97,34 +97,34 @@ export class CatalogComponent implements OnInit{
                   this.appliedFilters.push({
                     name: foundType.name,
                     urlParam: foundType.url
-                  })
+                  });
                 }
               }
-            })
+            });
 
             if (this.activeParams.heightFrom){
               this.appliedFilters.push({
                 name: 'Высота от ' + this.activeParams.heightFrom + ' см',
                 urlParam: 'heightFrom'
-              })
+              });
             }
             if (this.activeParams.heightTo){
               this.appliedFilters.push({
                 name: 'Высота до ' + this.activeParams.heightTo + ' см',
                 urlParam: 'heightTo'
-              })
+              });
             }
             if (this.activeParams.diameterFrom){
               this.appliedFilters.push({
                 name: 'Диаметр от ' + this.activeParams.diameterFrom + ' см',
                 urlParam: 'diameterFrom'
-              })
+              });
             }
             if (this.activeParams.diameterTo){
               this.appliedFilters.push({
                 name: 'Диаметр до ' + this.activeParams.diameterTo + ' см',
                 urlParam: 'diameterTo'
-              })
+              });
             }
 
             this.productService.getProducts(this.activeParams)
@@ -156,11 +156,11 @@ export class CatalogComponent implements OnInit{
                       product.isInFavorite = true;
                     }
                     return product;
-                  })
+                  });
                 }
-              })
-          })
-      })
+              });
+          });
+      });
   }
   removeAppliedFilter(appliedFilter: AppliedFilterType){
     if (appliedFilter.urlParam === 'heightFrom' || appliedFilter.urlParam === 'heightTo' || appliedFilter.urlParam === 'diameterFrom' || appliedFilter.urlParam === 'diameterTo'){

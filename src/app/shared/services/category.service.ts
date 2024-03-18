@@ -29,7 +29,7 @@ export class CategoryService {
                 id: item.id,
                 name: item.name,
                 url: item.url
-              })
+              });
             } else {
               array.push(
                 {
@@ -48,6 +48,6 @@ export class CategoryService {
 
           return array;
         })
-      )
+      );
   }
 }
